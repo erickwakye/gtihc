@@ -149,9 +149,9 @@ class UserController extends Controller
 
         return response()->json('ok',200);
 
-        
 
-      
+
+
     }
 
     /**
@@ -230,6 +230,6 @@ class UserController extends Controller
         return response()->json([
             'users' => $users
         ], 200);
-        
+
     }
 }

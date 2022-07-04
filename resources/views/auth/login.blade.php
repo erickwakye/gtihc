@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="login-logo">
-    <a href="{{ url('/') }}"><b>Laravel</b>Admin</a>
+    <a href="{{ url('/') }}"><b>GTIHC</b>Users</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -52,10 +52,10 @@
                 </div>
                 <!-- /.col -->
             </div>
-        </form>
+        {{-- </form>
         <p class="mb-0">
             <a href="{{route('register')}}" class="text-center">Create new account</a>
-        </p>
+        </p> --}}
     </div>
     <!-- /.login-card-body -->
 </div>

@@ -2,7 +2,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.Fire = new Vue();
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -19,10 +19,12 @@ Vue.use(VueToastr, {
 
 import moment from 'moment';
 
-Vue.filter("date", function(created){
-    return moment(created).format('MMMM Do YYYY, h:mm:ss a'); 
-});
 
+
+
+Vue.filter("date", function(created){
+    return moment(created).format('MMMM Do YYYY, h:mm:ss a');
+});
 
 
 import Swal from 'sweetalert2'
@@ -42,11 +44,18 @@ const Toast = Swal.mixin({
 window.toast = Toast;
 
 import { Form, HasError, AlertError } from 'vform'
+// Import components...
+import Multiselect from 'vue-multiselect'
+
+
+
 
 window.Form = Form;
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+Vue.component('multiselect', Multiselect)
+
 
 require('./component');
 

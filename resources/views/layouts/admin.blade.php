@@ -29,10 +29,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                 </li>
             </ul>
             <!-- Right navbar links -->
@@ -58,8 +55,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="{{ asset('img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <img src="{{ asset('img/logomain.png') }}" alt="GTIHC-Labs Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">GTIHC LABS</span>
             </a>
 
             <!-- Sidebar -->
@@ -78,7 +75,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('home') }}" class="nav-link">
                                 <i class="nav-icon fas fa-chalkboard"></i>
                                 <p>
                                     Dashboard
@@ -86,10 +83,10 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link active">
+                            <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-cogs"></i>
                                 <p>
-                                    Management
+                                    Users
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -107,15 +104,126 @@
                                             <p>Permissions</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('user.index') }}" class="nav-link">
+                                            <i class="fas fa-users-cog nav-icon"></i>
+                                            <p>Users</p>
+                                        </a>
+                                    </li>
                                 @endcan
-                                <li class="nav-item">
-                                    <a href="{{ route('user.index') }}" class="nav-link">
-                                        <i class="fas fa-users-cog nav-icon"></i>
-                                        <p>Users</p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
+
+                        @can('create role')
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-wrench"></i>
+                                <p>
+                                    Setups
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                {{-- @can('create role') --}}
+                                    <li class="nav-item">
+                                        <a href="{{ route('type.createType') }}" class="nav-link">
+                                            <i class="fa fa-cog nav-icon"></i>
+                                            <p>Types</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('sample.createSample') }}" class="nav-link">
+                                            <i class="fa fa-cog nav-icon"></i>
+                                            <p>Samples</p>
+                                        </a>
+                                    </li>
+                                    {{-- <li class="nav-item">
+                                        <a href="{{ route('patient.createPatient') }}" class="nav-link">
+                                            <i class="fa fa-cog nav-icon"></i>
+                                            <p>Branches</p>
+                                        </a>
+                                    </li> --}}
+                                    <li class="nav-item">
+                                        <a href="{{ route('price.createPrice') }}" class="nav-link">
+                                            <i class="fa fa-cog nav-icon"></i>
+                                            <p>Prices</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endcan
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-hospital-user"></i>
+                                <p>
+                                    Patients
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                {{-- @can('create role') --}}
+                                    <li class="nav-item">
+                                        <a href="{{ route('patient.createPatient') }}" class="nav-link">
+                                            <i class="fa fa-user-md nav-icon"></i>
+                                            <p>Register Patient</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('payment.createPayment') }}" class="nav-link">
+                                            <i class="fa fa-cash-register nav-icon"></i>
+                                            <p>Make Payment</p>
+                                        </a>
+                                    </li>
+
+                                {{-- @endcan --}}
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-flask"></i>
+                                <p>
+                                    Lab Test
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @canany(['create sample', 'create role'])
+                                    <li class="nav-item">
+                                        <a href="{{ route('sample.takeSample') }}" class="nav-link">
+                                            <i class="fa fa-vial nav-icon"></i>
+                                            <p>Samples </p>
+                                        </a>
+                                    </li>
+                                @endcanany
+                                @canany(['create mixing', 'create role'])
+                                    <li class="nav-item">
+                                        <a href="{{ route('mixing.mix') }}" class="nav-link">
+                                            <i class="fa fa-vials nav-icon"></i>
+                                            <p>Mixing </p>
+                                        </a>
+                                    </li>
+                                @endcanany
+                                @canany(['create control', 'create role'])
+                                    <li class="nav-item">
+                                        <a href="{{ route('control.makeControl') }}" class="nav-link">
+                                            <i class="fa fa-laptop-medical nav-icon"></i>
+                                            <p>Control </p>
+                                        </a>
+                                    </li>
+                                @endcanany
+                                @canany(['create control', 'create role'])
+                                    <li class="nav-item">
+                                        <a href="{{ route('result.makeResults') }}" class="nav-link">
+                                            <i class="fa fa-poll nav-icon"></i>
+                                            <p>Result </p>
+                                        </a>
+                                    </li>
+                                @endcanany
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{{ route('user.profile') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -124,12 +232,12 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                             <i class="fas fa-bell nav-icon"></i>
-                            <p>Notifications</p>
+                            <p>Patients</p>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -200,10 +308,10 @@
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+                PASS
             </div>
             <!-- Default to the left -->
-            <strong>Copyright © 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright © 2022</a>.</strong> All rights reserved.
         </footer>
         <div id="sidebar-overlay"></div>
     </div>

@@ -28,6 +28,7 @@ body {
     background-color: #fff;
 }
 
+
 .invalid-feedback {
     display: block;
     width: 100%;
@@ -37,4 +38,51 @@ body {
     background: #c81b1b;
     padding: 10px 12px;
     border-radius: 10px;
+}
+
+.tablenew {
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tablenew td.description,
+.tablenew th.description {
+    width: 75px;
+    max-width: 75px;
+}
+
+.tablenew td.quantity,
+.tablenew th.quantity {
+    width: 40px;
+    max-width: 40px;
+    word-break: break-all;
+}
+
+.tablenew td.price,
+.tablenew th.price {
+    width: 40px;
+    max-width: 40px;
+    word-break: break-all;
+}
+
+.centerednew {
+    text-align: center;
+    align-content: center;
+}
+
+.ticket {
+    width: 155px;
+    max-width: 155px;
+}
+
+.imgnew {
+    max-width: inherit;
+    width: inherit;
+}
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
 }
